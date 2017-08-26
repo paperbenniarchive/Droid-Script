@@ -7,6 +7,7 @@ function OnStart()
     lay.SetBackColor( "WHITE" );
     //Create an text edit box for password.
     edtPass = app.CreateTextEdit( "myPass1", 0.4 );
+    edtPass.SetTextColor( "#001553" );
     lay.AddChild( edtPass );
 
     //Create an text edit box for message
