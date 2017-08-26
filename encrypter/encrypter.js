@@ -6,12 +6,34 @@ function OnStart()
     lay = app.CreateLayout( "linear", "VCenter,FillXY" );    
     lay.SetBackColor( "WHITE" );
     //Create an text edit box for password.
-    edtPass = app.CreateTextEdit( "myPass1", 0.4 );
+    edtPass = app.CreateTextEdit( "put keyword here", 0.4 );
     edtPass.SetTextColor( "#001553" );
     lay.AddChild( edtPass );
 
+
+	laySlide = app.CreateLayout( "Linear", "FillXY" );
+	laySlide.SetPadding( 0, 0.1, 0, 0 ); 
+	laySlide.SetBackground( "/Sys/Img/GreenBack.png" );
+	laySlide.SetVisibility( "Hide" );
+	
+	//Create button and add to sliding layout.
+	btnBack = app.CreateButton( "Back", 0.3, 0.06, "custom" );
+	btnBack.SetOnTouch( btnBack_OnTouch );
+	laySlide.AddChild( btnBack );
+	
+	//Add layouts to app.	
+   var s = "<u>Commands</u><br><br>"
+        + "\Do you don't trust your messenger or e-mail provider?\<br>"
+        + "\Or do you just want to create your own secret language?\<br>"
+        + "\Then you've come to the right place!\<br>"
+        + "\How are you?\<br>"
+        + "\"Exit\"<br>";
+    txt = app.CreateText( s, 0.9, 0.8, "Multiline,Html" );
+    txt.SetTextSize( 20 );
+    laySlide.AddChild( txt );
+  
     //Create an text edit box for message
-    edt = app.CreateTextEdit( "Hello World!", 0.8, 0.3 );
+    edt = app.CreateTextEdit( "put your message here", 0.8, 0.3 );
     edt.SetMargins( 0,0.1,0,0 );
     edt.SetTextColor( "BLUE" );
     edt.SetCursorColor("#352B48"  );
@@ -37,10 +59,14 @@ function OnStart()
     btnCopy.SetOnTouch( btnCopy_OnTouch );
     lay.AddChild( btnCopy );
     
+    //create a help button
     
+    btnHelp = app.CreateButton( "Help", 0.7,0.1,  "Custom" );
+    btnHelp.SetOnTouch( btnHelp_OnTouch );
+    lay.AddChild( btnHelp );
     //Add layout to app.    
     app.AddLayout( lay );
-    
+  app.AddLayout( laySlide );  
     //Create Cryptography object.
     crypt = app.CreateCrypt();
 }
@@ -81,3 +107,15 @@ function btnHash_OnTouch()
 function btnCopy_OnTouch(){
 	app.SetClipboardText(	edt.GetText()  );
 	}
+
+
+function btnBack_OnTouch()
+{
+	laySlide.Animate( "SlideToLeft" );	
+}
+
+	
+function btnHelp_OnTouch()
+{
+	laySlide.Animate("SlideFromLeft");
+}
