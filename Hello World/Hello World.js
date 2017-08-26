@@ -10,7 +10,7 @@ function OnStart()
 	lay.AddChild( img );
 	
 	//Create a button 1/3 of screen width and 1/10 screen height.
-	btn = app.CreateButton( "do not press this button", 0.3, 0.1 );
+	btn = app.CreateButton( "Press Me", 0.3, 0.1 );
 	btn.SetMargins( 0, 0.05, 0, 0 );
 	lay.AddChild( btn );
 	
