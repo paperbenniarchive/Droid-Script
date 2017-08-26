@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 //Called when application is started.
 function OnStart()
@@ -33,4 +31,3 @@ function btn_OnTouch()
 	//pause,vibrate,pause,vibrate...
 	app.Vibrate( "0,100,30,100,50,300" );
 }
->>>>>>> refs/heads/master
