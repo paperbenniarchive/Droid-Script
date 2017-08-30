@@ -7,12 +7,29 @@ function OnStart()
 {
 	//Create a layout with objects vertically centered.
 	lay = app.CreateLayout( "linear", "VCenter,FillXY" );	
+  lay.SetBackGradient( "BLUE","GREEN");
 
+
+ 
+ 	//Speed seekbar
+	speed = app.CreateSeekBar( 0.8,0.1 );
+	speed.SetRange( 3.0 );
+	speed.SetValue( 1.0 );
+	lay.AddChild( speed );
+ 
+ 
 	//Create a button.
 	btn = app.CreateButton( "Talk To Me", 0.3, 0.1, "Custom");
+	btn.SetStyle( "GREEN", "#4285F4", 4 );
 	btn.SetMargins( 0, 0.05, 0, 0 );
 	btn.SetOnTouch( btn_OnTouch );
 	lay.AddChild( btn );
+	
+	//Pitch seekbar
+	pitch = app.CreateSeekBar(0.8,0.4 );
+	pitch.SetRange( 3.0 );
+	pitch.SetValue( 1.0 );
+	lay.AddChild( pitch );
 	
 	//Add layout to app.	
 	app.AddLayout( lay );
@@ -45,7 +62,7 @@ function speech_OnResult( results )
     //of the array.
     
     //Show the top result.
-    app.TextToSpeech( results[0] );
+    app.TextToSpeech( results[0], pitch.GetValue());
 }
 
 //Called if recognition fails.
@@ -53,4 +70,3 @@ function speech_OnError()
 {
     app.TextToSpeech(  "Please speak more clearly!" );
 }
-
