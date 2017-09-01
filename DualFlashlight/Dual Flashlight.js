@@ -1,4 +1,4 @@
-
+// lool du bimst 1 spassd
 function OnStart()
 {
 	lay = app.CreateLayout( "linear", "VCenter,FillXY" );	
