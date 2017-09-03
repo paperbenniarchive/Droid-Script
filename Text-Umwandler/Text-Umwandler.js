@@ -10,21 +10,27 @@ function OnStart()
 	
 	lay2 = app.CreateLayout( "Linear", "Horizontal, FillX" );
 	lay2.SetBackColor( "white" );
+	lay1.AddChild( lay2 );
 	
 	lay3 = app.CreateLayout( "Linear", "Horizontal, FillX" );
 	lay3.SetBackColor( "white" );
+	lay1.AddChild( lay3 );
 	
 	lay4 = app.CreateLayout( "Linear", "Horizontal, FillX" );
 	lay4.SetBackColor( "white" );
+	lay1.AddChild( lay4 );
 	
 	lay5 = app.CreateLayout( "Linear", "Horizontal, FillX" );
 	lay5.SetBackColor( "white" );
+	lay1.AddChild( lay5 );
 	
 	lay6 = app.CreateLayout( "Linear", "Horizontal, FillX" );
 	lay6.SetBackColor( "white" );
+	lay1.AddChild( lay6 );
 	
 	lay7 = app.CreateLayout( "Linear", "Horizontal, FillX" );
 	lay7.SetBackColor( "white" );
+	lay1.AddChild( lay7 );
 	
 	txt1 = app.CreateText( "lol" );
 	txt1.SetTextSize( 23 );
@@ -43,15 +49,6 @@ function OnStart()
 	for( i=14; i>21; i++ ) AddButton( lay6, but[i] );
 	
 	for( i=21; i>26; i++ ) AddButton( lay7, but[i] );
-	
-	lay1.AddChild( lay2 );
-	lay1.AddChild( lay3 );
-	lay1.AddChild( lay4 );
-	lay1.AddChild( lay5 );
-	lay1.AddChild( lay6 );
-	lay1.AddChild( lay7 );
-	//lay1.AddChild(  );
-	//lay1.AddChild(  );
 	
 	app.AddLayout( lay1 );
 }
