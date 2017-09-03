@@ -5,25 +5,25 @@ var col = "white";
 function OnStart()
 {
 // erstes Layout
-	lay1 = app.CreateLayout( "Linear", "VCenter, FillX" );
+	lay1 = app.CreateLayout( "Linear", "VCenter, FillXY" );
 	lay1.SetBackColor( col );
 	lay1.SetPadding( 0, 0.4 );
-	lay1.SetOnTouch( lay1_OnTouch );
+	lay1.SetOnTouch( Srt_OnTouch );
 	// Text "Binary Calculator"
 	txt1 = app.CreateText( "Binary Calculator" );
 	txt1.SetTextColor( "black" );
 	txt1.SetTextSize( 30 );
-	txt1.SetOnTouch( txt1_OnTouch );
+	txt1.SetOnTouch( Srt_OnTouch );
 	// zweites Layout, unter dem ersten
 	lay11 = app.CreateLayout( "Linear", "VCenter, FillXY" );
 	lay11.SetBackColor( col );
 	lay11.SetPadding( 0, 0.2, 0, 0.285 );
-	lay11.SetOnTouch( lay11_OnTouch );
+	lay11.SetOnTouch( Srt_OnTouch );
 	// Text "Click to Continue"
 	txt11 = app.CreateText( "Click to Continue" );
 	txt11.SetTextSize( 20 );
 	txt11.SetTextColor( "black" );
-	txt11.SetOnTouch( txt11_OnTouch );
+	txt11.SetOnTouch( Srt_OnTouch );
 	// erste Seite fertig
 	lay11.AddChild( txt11 );
 	lay1.AddChild( txt1 );
@@ -63,10 +63,16 @@ function OnStart()
   btnSrt3 = app.CreateButton( "Start", 0.3, 0.07, "gray" );
   btnSrt3.SetTextSize( 17 );
   btnSrt3.SetOnTouch( btnSrt3_OnTouch );
-
+  // Button um die App zu schließen "Exit"
+  btnExt = app.CreateButton( "Exit", 0.3, 0.07, "gray" );
+  btnExt.SetTextSize( 17 );
+  btnExt.SetMargins( 0.01, 0.03, 0.01, 0.01 );
+  btnExt.SetOnTouch( btnExt_OnTouch );
+  
   laySrt2.AddChild( btnSrt3 );
   laySrt2.AddChild( btnSrt1 );
   laySrt2.AddChild( btnSrt2 );
+  laySrt2.AddChild( btnExt );
   
   app.AddLayout( laySrt1 );
   
@@ -98,6 +104,7 @@ function OnStart()
   layCalc2.SetBackColor( col );
   layCalc21 = app.CreateLayout( "Linear", "Horizontal, FillXY" );
   layCalc21.SetBackColor( col );
+  layCalc21.SetSize( 1, 0.6 );
   
   // Feld, wo die Binärzahlen reinkommen
   txtCalc21 = app.CreateText( "", 1, 0.1 );
@@ -134,7 +141,7 @@ function OnStart()
   layCalc21.AddChild( btnCalc23 );
   
   layCalc2.AddChild( layCalc21 );
-
+  
   layCalc1.AddChild( layCalc2 );
   
   // Seite Settings 
@@ -199,6 +206,10 @@ function OnStart()
   app.AddLayout( layCalc1 );
   
   DrawPicture();
+  
+  app.EnableBackKey( false );
+  
+  app.SetScreenMode( "game" );
 }
 
 // alle Images
@@ -226,32 +237,12 @@ function DrawPicture()
 }
 
 // erste Seite_OnTouch
-function lay1_OnTouch()
+function Srt_OnTouch()
 {
+	//lay1.Animate( "SlideToLeft" );
+	laySrt1.SetVisibility( "Show" );
+	laySrt1.Animate( "SlideFromRight" );
 	lay1.Animate( "SlideToLeft" );
-	laySrt1.SetVisibility( "Show" );
-	laySrt1.Animate( "SlideFromRight" );
-}
-
-function txt1_OnTouch()
-{
-  lay1.Animate( "SlideToLeft" );
-	laySrt1.SetVisibility( "Show" );
-	laySrt1.Animate( "SlideFromRight" );
-}
-
-function lay11_OnTouch()
-{
-	lay1.Animate( "SlideToLeft" );
-	laySrt1.SetVisibility( "Show" );
-	laySrt1.Animate( "SlideFromRight" );
-}
-
-function txt11_OnTouch()
-{
-	lay1.Animate( "SlideToLeft" );
-	laySrt1.SetVisibility( "Show" );
-	laySrt1.Animate( "SlideFromRight" );
 }
 
 // Seite 2_OnTouch
@@ -402,6 +393,8 @@ function btnCalc23_OnTouch()
 	
 	else if (txtBin=="01111010") sum = "z";
 	
+	else sum = "ERROR";
+	
 	txtCalc21.SetText( sum );
 }
 
@@ -427,6 +420,18 @@ function btnSrt1_OnTouch()
 {
 	laySrt1.SetVisibility( "Hide" );
 	laySet.SetVisibility( "Show" );
+}
+
+function btnExt_OnTouch()
+{
+	var YN = app.CreateYesNoDialog( "Exit App?" );
+	YN.SetOnTouch( YN_OnTouch );
+	YN.Show();
+}
+
+function YN_OnTouch( result )
+{
+	if ( result=="Yes" ) app.Exit();
 }
 
 
