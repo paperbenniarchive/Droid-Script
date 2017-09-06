@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Device Browser</title>
+		<script src="../jquery/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="file-browser.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="file-browser.min.css">
+		<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+	</head>
+	<body class="drop-target">
+	
+	    <div class="browser-container">
+	
+    		<div id="current-dir"></div>
+    		
+    		<table class="browser"></table>	
+    		
+    		<ul class="context-menu">
+                <li data-action="Rename"><i class="fa-li fa fa-pencil-square-o"></i>Rename</li>
+                <li data-action="Delete"><i class="fa-li fa fa-trash"></i>Delete</li>
+                <li data-action="New Folder"><i class="fa-li fa fa-folder"></i>New Folder</li>
+            </ul>
+        
+        </div>
+        
+        <div class="busy-spinner">
+        </div>
+        
+	</body>
+</html>

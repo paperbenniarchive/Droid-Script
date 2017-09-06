@@ -1,0 +1,92 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>SetMenu</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>SetMenu</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p> The <b>SetMenu</b> method sets the app menus given a comma seperated list of menu items. 
+		 When a menu item is selected, the <b>OnMenu</b> function is called.</p>
+		 
+		 <p>Note: On some Android devices, a menu button is not provided, so if you require them, you will need to create a button to launch 
+		 the menus yourself using the app.ShowMenu() method.</p>
+		
+		<!---<p> You can also show <b>menu images</b> by setting an image path and adding an image name to
+		each menu item preceeded by a semi-colon.<p/>-->
+		
+		<div class="samp">&nbsp;app.SetMenu( menuList );</div><br>
+	
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example</h3>
+			<div id="examp1" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				 <b id="snip1"  style="font-size:100%">
+				  &nbsp;&nbsp;app.SetMenu( "Start,Stop,Pause" );<br>
+				 </b>
+				}<br><br>
+				function OnMenu( item )<br>
+				{<br>        		
+					&nbsp;&nbsp;app.ShowPopup( item, "Short" );<br>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+		
+		<!--
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Menu Images</h3>
+			<div id="examp2" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				 <b id="snip2"  style="font-size:100%">
+				  &nbsp;&nbsp;menus = "Files:Files.png,Settings:Settings.png";<br>
+				  &nbsp;&nbsp;app.SetMenu( menus, "/Sys/Img" );<br>
+				 </b>
+				}<br><br>
+				function OnMenu( item )<br>
+				{<br>        		
+					&nbsp;&nbsp;app.ShowPopup( item, "Short" );<br>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+		-->
+		
+		
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

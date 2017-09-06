@@ -1,4 +1,5 @@
 // lool du bimst 1 spassd
+//soos
 function OnStart()
 {
 	lay = app.CreateLayout( "linear", "VCenter,FillXY" );	
@@ -12,6 +13,7 @@ app.AddLayout( laytop );
 	cam.SetFlash( true );
 	app.SetScreenBrightness( 1 );
 }
+
 
 
 

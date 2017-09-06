@@ -1,0 +1,202 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>FloatingActionsMenu</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a" >
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>FloatingActionsMenu</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	
+		<p>The FloatingActionsMenu is a special FloatingActionButton that, when pressed, will expand to reveal a collection FloatingActionButtons.</p>
+
+		<p>Create FloatingActionsMenu objects using the <b>CreateFAMenu</b> method of the UIExtras object: </p>
+		
+		<div class="samp">&nbsp;fam = uix.CreateFAMenu( icon, options );</div>
+		
+		<p>As with the FloatingActionButton, the FloatingActionsMenu supports FontAwesome icons. Set the direction that the menu will open using the <b>Up</b>(default), <b>Down</b>, <b>Left</b> or <b>Right</b> option.</p>
+
+		<p>Use the <b>AddFAButton</b> method to add a FloatingActionButton object to the menu. You can find out how to create FloatingActionButtons <a href="FloatingActionButton.html">here</a>.</p>
+
+		<div class="samp">&nbsp;fam.AddFAButton( fab );</div>
+
+		<h3>Labels</h3>
+
+		<p>When the menu is expanded, text labels can be shown next to each FloatingActionButton. You can set the label for each FloatingActionButton using its <b>SetLabel</b> method.</p>
+
+		<div class="samp">&nbsp;fab.SetLabel( label );</div>
+
+		<p>Use the <b>LabelsLeft</b> or <b>LabelsRight</b> option of the CreateFAMenu method to set the side of the FloatingActionButtons that the labels will appear.</p>
+
+		<p>Set the label background and text colors using the <b>SetLabelBackColor</b> and <b>SetLabelTextColor</b> methods. Use <b>SetLabelTextSize</b> to change the size of the label text.</p>
+
+		<p>Note that labels are only supported in vertical menus, i.e. when using the Up or Down open direction.</p>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Vertical Menu with Labels</h3>
+			<div id="examp1" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				function OnStart() <br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "FillXY" );<br>
+				&nbsp;lay.SetBackground( "/Sys/Img/GreenBack.png" );<br>
+				&nbsp;app.AddLayout( lay );<br>			
+				<br>
+				&nbsp;uix = app.CreateUIExtras();<br>
+				&nbsp;<br>
+				<b id="snip1" style="font-size:100%">
+				&nbsp;layFam = app.CreateLayout( "Linear", "FillXY, Bottom, Right, TouchThrough" );<br>
+				&nbsp;fam = uix.CreateFAMenu( "[fa-envelope-o]", "Up,LabelsLeft" );<br>
+				&nbsp;fam.SetMargins( 0.02, 0.01, 0.02, 0.01 );<br>
+				&nbsp;fam.SetLabelBackColor( "#FFFFFF" );<br>
+    			&nbsp;fam.SetLabelTextColor( "#646464" );<br>
+				&nbsp;fam.SetOnOpened( fam_OnOpened );<br>
+    			&nbsp;fam.SetOnClosed( fam_OnClosed );<br>
+				&nbsp;layFam.AddChild( fam );<br>
+				</b>
+				&nbsp;<br>
+				&nbsp;fabReply = uix.CreateFAButton( "[fa-reply]", "Mini" );<br>
+				&nbsp;fabReply.SetButtonColors( "#db4437", "#c33d32" );<br>
+				&nbsp;fabReply.SetOnTouch( fab_OnMailReply );<br>
+				&nbsp;fabReply.SetLabel( "Reply" );<br>
+				&nbsp;fam.AddFAButton( fabReply );<br>
+				&nbsp;<br>
+				&nbsp;fabReplyAll = uix.CreateFAButton( "[fa-reply-all]", "Mini" );<br>
+				&nbsp;fabReplyAll.SetButtonColors( "#db4437", "#c33d32" );<br>
+				&nbsp;fabReplyAll.SetOnTouch( fab_OnMailReplyAll );<br>
+				&nbsp;fabReplyAll.SetLabel( "Reply All" );<br>
+				&nbsp;fam.AddFAButton( fabReplyAll );<br>
+				&nbsp;<br>
+				&nbsp;fabForward = uix.CreateFAButton( "[fa-share]", "Mini" );<br>
+				&nbsp;fabForward.SetButtonColors( "#fbbc05", "#efb306" );<br>
+				&nbsp;fabForward.SetOnTouch( fab_OnMailForward );<br>
+				&nbsp;fabForward.SetLabel( "Forward" );<br>
+				&nbsp;fam.AddFAButton( fabForward );<br>
+				&nbsp;<br>
+				&nbsp;app.AddLayout( layFam );  <br>
+				}<br>
+				function fam_OnOpened()<br>
+				{<br>
+				&nbsp;layFam.SetBackColor( "#99FFFFFF" );<br>
+				}<br>
+				<br>
+				function fam_OnClosed()<br>
+				{<br>
+				&nbsp;layFam.SetBackColor( "#00FFFFFF" );<br>
+				}<br>
+				<br>
+				function fab_OnMailReply()<br>
+				{<br>
+				&nbsp;app.ShowPopup( "Reply" );<br>
+				}<br>
+				<br>
+				function fab_OnMailReplyAll()<br>
+				{<br>
+				&nbsp;app.ShowPopup( "Reply All" );<br>
+				}<br>
+				<br>
+				function fab_OnMailForward()<br>
+				{<br>
+				&nbsp;app.ShowPopup( "Forward" );<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Horizontal Menu</h3>
+			<div id="examp2" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				function OnStart() <br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "FillXY" );<br>
+				&nbsp;lay.SetBackground( "/Sys/Img/BlueBack.png" );<br>
+				&nbsp;app.AddLayout( lay );<br>
+				<br>
+				&nbsp;uix = app.CreateUIExtras();<br>
+				&nbsp;<br>
+				<b id="snip2" style="font-size:100%">
+				&nbsp;layFam = app.CreateLayout( "Linear", "FillXY, Top, Left, TouchThrough" );<br>
+				&nbsp;fam = uix.CreateFAMenu( "[fa-cog]", "Right" );<br>
+				&nbsp;fam.SetIconColor( "#000000" );<br>
+				&nbsp;fam.SetButtonColors( "#ffffff", "#ececec" );<br>
+				&nbsp;fam.SetMargins( 0.02, 0.01, 0.02, 0.01 );<br>
+				&nbsp;layFam.AddChild( fam );&nbsp;<br>
+				</b>
+				&nbsp;<br>
+				&nbsp;fabBT = uix.CreateFAButton( "[fa-bluetooth]" );<br>
+				&nbsp;fabBT.SetOnTouch( fab_OnBluetooth );<br>
+				&nbsp;fam.AddFAButton( fabBT );<br>
+				&nbsp;<br>
+				&nbsp;fabWifi = uix.CreateFAButton( "[fa-wifi]" );<br>
+				&nbsp;fabWifi.SetOnTouch( fab_OnWifi );<br>
+				&nbsp;fam.AddFAButton( fabWifi );<br>
+				&nbsp;<br>
+				&nbsp;fabGPS = uix.CreateFAButton( "[fa-location-arrow]" );<br>
+				&nbsp;fabGPS.SetOnTouch( fab_OnGPS );<br>
+				&nbsp;fam.AddFAButton( fabGPS );<br>
+				&nbsp;<br>
+				&nbsp;app.AddLayout( layFam );  <br>
+				}<br>
+				<br>
+				function fab_OnBluetooth()<br>
+				{<br>
+				&nbsp;app.ShowPopup( "Bluetooth" );<br>
+				}<br>
+				<br>
+				function fab_OnWifi()<br>
+				{<br>
+				&nbsp;app.ShowPopup( "Wifi" );<br>
+				}<br>
+				<br>
+				function fab_OnGPS()<br>
+				{<br>
+				&nbsp;app.ShowPopup( "GPS" );<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>The following methods are available on the FloatingActionsMenu object:</p>
+
+	    <div class="samp">&nbsp;GetType()</div>
+		<div class="samp">&nbsp;SetIconColor( color )</div>
+		<div class="samp">&nbsp;SetButtonColors( normal, pressed )</div>
+		<div class="samp">&nbsp;SetLabelBackColor( color )</div>
+		<div class="samp">&nbsp;SetLabelTextColor( color )</div>
+		<div class="samp">&nbsp;SetLabelTextSize( size )</div>
+		<div class="samp">&nbsp;AddFAButton( fab )</div>
+		<div class="samp">&nbsp;Open()</div>
+		<div class="samp">&nbsp;Close()</div>
+		<div class="samp">&nbsp;IsOpen()</div>
+		<div class="samp">&nbsp;SetOnOpened( callback )</div>
+		<div class="samp">&nbsp;SetOnClosed( callback )</div>
+
+		<br>
+
+		<p>The FloatingActionMenu control uses the android-floating-action-button library from futuresimple, licensed under the Apache 2.0 License.</p>
+
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

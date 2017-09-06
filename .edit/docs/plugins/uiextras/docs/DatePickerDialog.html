@@ -1,0 +1,86 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>DatePickerDialog</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a" >
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>DatePickerDialog</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	
+		<p>Create DatePickerDialog objects using the <b>CreateDatePickerDialog</b> method of the UIExtras object: </p>
+		
+		<div class="samp">&nbsp;picker = uix.CreateDatePickerDialog( title, year, month, day, options );</div>
+		
+		<p>By default the DatePickerDialog will use a spinner view, you can use the <b>Calendar</b> option to use a calendar view instead.</p>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - DatePickerDialog</h3>
+			<div id="examp1" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				function OnStart() <br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" ); <br>
+				&nbsp;<br>
+				&nbsp;btn = app.CreateButton( "Pick Date", 0.3, 0.1 ); <br>
+				&nbsp;btn.SetOnTouch( btn_OnTouch ); <br>
+				&nbsp;lay.AddChild( btn ); <br>
+				<br>
+				&nbsp;app.AddLayout( lay ); <br>
+				<br>
+				&nbsp;uix = app.CreateUIExtras();<br>
+				} <br>
+				<br>
+				function btn_OnTouch() <br>
+				{ <br>
+				<b id="snip1" style="font-size:100%">
+				&nbsp;picker = uix.CreateDatePickerDialog( "Pick a Date" );<br>
+				&nbsp;picker.SetOnOk( picker_OnOk );<br>
+				&nbsp;picker.Show();<br>
+				</b>
+				}<br>
+				<br>
+				function picker_OnOk( year, month, day )<br>
+				{<br>
+				&nbsp;var date = new Date();<br>
+				&nbsp;date.setFullYear( year, month, day);<br>
+				<br>
+				&nbsp;app.ShowPopup( date.toDateString() );<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>The following methods are available on the DatePickerDialog object:</p>
+
+	    <div class="samp">&nbsp;GetType()</div>
+	    <div class="samp">&nbsp;SetTitle( title )</div>
+		<div class="samp">&nbsp;Show()</div>
+		<div class="samp">&nbsp;Hide()</div>
+		<div class="samp">&nbsp;Dismiss()</div>
+		<div class="samp">&nbsp;SetDate( year, month, day )</div>
+		<div class="samp">&nbsp;SetMinDate( year, month, day )</div>
+		<div class="samp">&nbsp;SetMaxDate( year, month, day )</div>
+		<div class="samp">&nbsp;SetOnOk( callback )</div>
+
+		<br>
+
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

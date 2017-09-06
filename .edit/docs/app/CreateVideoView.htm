@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>VideoView</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet" href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>VideoView</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+		<p> Create a VideoView using the <b>CreateVideoView</b> function of the <b>app</b> object: </p>
+
+		  <div class="samp">&nbsp;player = app.CreateVideoView( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> );</div>
+
+		<p>This control allows your program to play video files stored locally on the phone/tablet and also stream video from remote sources.</p>
+
+		<p>Use <b>SetFile</b> to set the video file or video stream address.</p>
+
+		  <div class="samp">&nbsp;player.SetFile( "http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8" );</div>
+
+		<p>When the video is ready to play, the <b>OnReady</b> callback function will be called, you can then use <b>Play</b> to start playing the video.</p>
+
+		<p>If the video cannot be played, the <b>OnError</b> callback function will be called. Use <b>SetOnReady</b> and <b>SetOnError</b> to set the names of your OnReady and OnError callback functions.</p>
+
+		<p>The following example shows how to stream a video.</p>
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+				<h3>Example - Video Stream</h3>
+				<div id="examp1" style="font-size:70%">
+					function OnStart()<br>
+					{<br>
+					&nbsp;&nbsp;lay = app.CreateLayout( "Linear", "FillXY,VCenter" );<br>
+					<br>
+					&nbsp;&nbsp;app.ShowProgress( "Buffering..." );<br>
+					<br>
+					<b id="snip1"  style="font-size:100%">
+					&nbsp;&nbsp;player = app.CreateVideoView( 0.9, 0.4 );<br>
+					&nbsp;&nbsp;player.SetOnReady( player_OnReady );<br>
+					&nbsp;&nbsp;player.SetOnError( player_OnError );<br>
+					&nbsp;&nbsp;lay.AddChild( player );<br>
+					<br>
+					&nbsp;&nbsp;player.SetFile( "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" );<br>
+					</b>
+					<br>
+					&nbsp;&nbsp;app.AddLayout( lay );<br>
+					}<br>
+					<br>
+					function player_OnReady()<br>
+					{<br>
+					&nbsp;&nbsp;app.HideProgress();<br>
+					&nbsp;&nbsp;app.ShowPopup( "OnReady" );<br>
+					&nbsp;&nbsp;player.Play();<br>
+					}<br>
+					<br>
+					function player_OnError()<br>
+					{<br>
+					&nbsp;&nbsp;app.HideProgress();<br>
+					&nbsp;&nbsp;app.ShowPopup( "OnError" );<br>
+					}<br>
+				</div>
+				<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+				</div>
+		</div>
+
+		<p>The following methods are available on the VideoView object:</p>
+
+		<div class="samp">&nbsp;SetVisibility( <a href="#pop_bin" data-transition="pop" data-rel="popup">visibility</a> )</div>
+		<div class="samp">&nbsp;GetVisibility()</div>
+		<div class="samp">&nbsp;SetMargins( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">right</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">bottom</a> )</div>
+		<div class="samp">&nbsp;SetPosition( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;SetSize( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;GetWidth()</div>
+		<div class="samp">&nbsp;GetHeight()</div>
+
+		<div class="samp">&nbsp;SetFile( <a href="#pop_str_pth" data-transition="pop" data-rel="popup">fileName</a> )</div>
+		<div class="samp">&nbsp;Play()</div>
+		<div class="samp">&nbsp;Pause()</div>
+		<div class="samp">&nbsp;Stop()</div>
+		<div class="samp">&nbsp;IsReady()</div>
+		<div class="samp">&nbsp;IsPlaying()</div>
+		<div class="samp">&nbsp;SeekTo( <a href="#pop_num_flt" data-transition="pop" data-rel="popup">seconds</a> )</div>
+		<div class="samp">&nbsp;GetPosition()</div>
+		<div class="samp">&nbsp;GetDuration()</div>
+		<div class="samp">&nbsp;SetOnReady( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<div class="samp">&nbsp;SetOnComplete( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<div class="samp">&nbsp;SetOnError( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<br>
+
+	</div><!-- /content -->
+
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_flt" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_srw" class="ui-content"><b>number</b> - fraction of screen width</div>
+<div data-role="popup" id="pop_num_srh" class="ui-content"><b>number</b> - fraction of screen height</div>
+<div data-role="popup" id="pop_num_prw" class="ui-content"><b>number</b> - fraction of parent width</div>
+<div data-role="popup" id="pop_num_prh" class="ui-content"><b>number</b> - fraction of parent height</div>
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_str_pth" class="ui-content"><b>string</b> - "/absolute/" or "relative/"</div>
+<div data-role="popup" id="pop_str_arr" class="ui-content"><b>string</b> - comma separated</div>
+<div data-role="popup" id="pop_bin" class="ui-content"><b>boolean</b></div>
+<div data-role="popup" id="pop_fnc" class="ui-content"><b>function</b> - (args)</div>
+</div><!-- /page -->
+
+</body>
+</html>

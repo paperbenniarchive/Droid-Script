@@ -1,0 +1,65 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>UIExtras</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <style type="text/css">
+        </style>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> 
+		<h1>UIExtras</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+		<div align="center"><img src="UIExtras.png" width="150px"></div>
+			
+		<p>The UIExtras plugin is a collection of User Interface components (controls and dialogs) to enhance your DroidScript Apps.</p>
+		
+		<p>In order to use UIExtras, you must first load the plugin at the top of your script using the <b>LoadPlugin</b> method like this:</p>
+		
+		<div class="samp">&nbsp;app.LoadPlugin( "UIExtras" );</div>
+		
+		<p>Then you can create an instance of the plugin object when you need it like this:</p>
+		
+		<div class="samp">&nbsp;uix = app.CreateUIExtras();</div>
+		  
+		<p>The following UI components are provided by the UIExtras plugin:</p>
+
+		<h3>Controls</h3>
+
+		<ul data-role="listview" data-inset="true" data-filter="false" >
+			
+			<li><a href="docs/Picker.html">Picker</a></li>
+			<li><a href="docs/NumberPicker.html">NumberPicker</a></li>
+			<li><a href="docs/DatePicker.html">DatePicker</a></li>
+			<li><a href="docs/TimePicker.html">TimePicker</a></li>
+			<li><a href="docs/FloatingActionButton.html">FloatingActionButton</a></li>
+			<li><a href="docs/FloatingActionsMenu.html">FloatingActionsMenu</a></li>
+
+		</ul>
+
+		<h3>Dialogs</h3>
+
+		<ul data-role="listview" data-inset="true" data-filter="false" >
+
+			<li><a href="docs/DatePickerDialog.html">DatePickerDialog</a></li>
+			<li><a href="docs/TimePickerDialog.html">TimePickerDialog</a></li>
+		    <li><a href="docs/ColorPickerDialog.html">ColorPickerDialog</a></li>
+
+		</ul>
+		
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>ShowPopup</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+		
+        <style type="text/css">
+			.samp {
+				background-color: #F8F8F8;
+				border: 1px solid #CCC;
+				font-size: 13px;
+				line-height: 19px;
+				overflow: auto;
+				padding: 6px 10px;
+				border-radius: 5px;
+			}
+        </style>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>ShowPopup</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p> The <b>ShowPopup</b> method shows a popup message on the screen for a few seconds which then fades away. </p>
+
+		<p>Use the option <b>"Short"</b> to shorten the time that the message is displayed and the 
+		 option <b>"Bottom"</b> to make the message appear near the bottom of the screen.</p>
+		
+		<div class="samp">&nbsp;app.ShowPopup( <a href="#pop_str" data-transition="pop" data-rel="popup">text</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> );</div><br>
+	
+		<div data-role="collapsible" data-collapsed="false"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Top</h3>
+			<div id="examp1" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				 <b id="snip1"  style="font-size:100%">
+				  &nbsp;&nbsp;app.ShowPopup( "Hello World!" );<br>
+				 </b>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+		
+		<div data-role="collapsible" data-collapsed="false"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Bottom</h3>
+			<div id="examp2" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				 <b id="snip2"  style="font-size:100%">
+				  &nbsp;&nbsp;app.ShowPopup( "Hello World!", "Bottom,Short" );<br>
+				 </b>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+		
+	
+	</div><!-- /content -->
+	
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_str_arr" class="ui-content"><b>string</b> - comma separated</div>
+</div><!-- /page -->
+
+</body>
+</html>

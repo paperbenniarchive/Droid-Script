@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CameraView</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet" href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>CameraView</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+		<p> Create a camera preview control using the <b>CreateCameraView</b> function of the <b>app</b> object: </p>
+
+		  <div class="samp">&nbsp;cam = app.CreateCameraView( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> );</div>
+
+		<p>This control allows your program to show a live feed of what is currently being seen by the phone/tablet's camera. If your device
+		has a front facing camera and is at least version 2.3 of Android you can use the <b>"Front"</b> option to show the front camera's preview.</p>
+
+		<p>You will need to call the <b>StartPreview</b> function of the CameraView control to start the preview (Note: On some phones
+		it is neccessary to wait at least one second before calling the StartPreview function).</p>
+
+		   <div class="samp">&nbsp;cam.StartPreview();</div>
+
+		<p>The following example simply shows the front camera's preview in the center of the screen.</p>
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+				<h3>Example - Show camera preview</h3>
+				<div id="examp1" style="font-size:70%">
+					function OnStart()<br>
+					{<br>
+					 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
+					 <b id="snip1"  style="font-size:100%">
+					 &nbsp;&nbsp;cam = app.CreateCameraView( 0.8, 0.4 );<br>
+					 &nbsp;&nbsp;lay.AddChild( cam );<br>
+					 &nbsp;&nbsp;setTimeout( "cam.StartPreview()", 1000 );<br><br>
+					 </b>
+					 &nbsp;&nbsp;app.AddLayout( lay );<br>
+					}<br>
+					<br>
+				</div>
+				<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+				</div>
+		</div>
+
+		<p> Use the <b>TakePicture</b> function to take a picture and save it to a given location. </p>
+
+			 <div class="samp">&nbsp;cam.TakePicture( filename );</div>
+
+		<p> Use the <b>SetPictureSize</b> function to set the dimensions in pixels of the pictures taken (eg. 1024 x 768). </p>
+
+			 <div class="samp">&nbsp;cam.SetPictureSize( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> );</div>
+
+		<p>The following example shows how to take pictures and save them to the SD card.</p>
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+				<h3>Example - Take pictures</h3>
+				<div id="examp2" style="font-size:70%">
+					function OnStart()<br>
+					{<br>
+					 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
+					 <b id="snip2"  style="font-size:100%">
+					 &nbsp;&nbsp;cam = app.CreateCameraView( 0.8, 0.4 );<br>
+					 &nbsp;&nbsp;lay.AddChild( cam );<br>
+					 &nbsp;&nbsp;cam.SetPictureSize( 1024, 768 );<br>
+					 &nbsp;&nbsp;setTimeout( "cam.StartPreview()", 1000 );<br><br>
+					 </b>
+					 &nbsp;&nbsp;btn = app.CreateButton( "Snap", 0.3, -1 );<br>
+					 &nbsp;&nbsp;btn.SetOnTouch( Snap );<br>
+					 &nbsp;&nbsp;lay.AddChild( btn );<br><br>
+					 &nbsp;&nbsp;app.AddLayout( lay );<br>
+					}<br><br>
+					function Snap() <br>
+					{<br>
+					  &nbsp;&nbsp;cam.TakePicture( "/sdcard/MyPic.jpg" );<br>
+					  &nbsp;&nbsp;app.ShowPopup("Picture saved");<br>
+					}<br>
+				</div>
+				<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+				</div>
+		</div>
+
+		<p>For more sophisticated examples including motion detection and video streaming, check out the <b>'Camera Stream'</b>,
+		 <b>'Camera Snap'</b> and <b>'Camera Motion'</b> sample programs.</p>
+
+		 <p>The following methods are avaiable on the CameraView object:</p>
+
+		<div class="samp">&nbsp;SetVisibility( <a href="#pop_bin" data-transition="pop" data-rel="popup">visibility</a> )</div>
+		<div class="samp">&nbsp;GetVisibility()</div>
+		<div class="samp">&nbsp;SetMargins( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">right</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">bottom</a> )</div>
+		<div class="samp">&nbsp;SetPosition( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;SetSize( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;GetWidth()</div>
+		<div class="samp">&nbsp;GetHeight()</div>
+
+		<div class="samp">&nbsp;StartPreview()</div>
+		<div class="samp">&nbsp;StopPreview()</div>
+		<div class="samp">&nbsp;Focus()</div>
+		<div class="samp">&nbsp;SetFocusMode( <a href="#pop_str_mod" data-transition="pop" data-rel="popup">mode</a> )</div>
+		<div class="samp">&nbsp;SetPictureSize( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;GetPictureSizes()</div>
+		<div class="samp">&nbsp;SetColorEffect( effect )</div>
+    	<div class="samp">&nbsp;GetColorEffects()</div>
+		<div class="samp">&nbsp;TakePicture( <a href="#pop_str_pth" data-transition="pop" data-rel="popup">fileName</a> )</div>
+		<div class="samp">&nbsp;Stream( ip, port, quality, fps, mtu )</div>
+		<div class="samp">&nbsp;SetFlash( <a href="#pop_bin" data-transition="pop" data-rel="popup">onoff</a> )</div>
+		<div class="samp">&nbsp;SetSound( <a href="#pop_bin" data-transition="pop" data-rel="popup">onoff</a> )</div>
+		<div class="samp">&nbsp;GetImageWidth()</div>
+		<div class="samp">&nbsp;GetImageHeight()</div>
+		<div class="samp">&nbsp;GetCameraCount()</div>
+		<div class="samp">&nbsp;SetPreviewImage( imageObj )</div>
+		<div class="samp">&nbsp;MotionMosaic(  xtiles, ytiles, sensitivity, minPeriod, imageObj )</div>
+		<div class="samp">&nbsp;ReportColors( <a href="#pop_str_arr" data-transition="pop" data-rel="popup">list</a>, <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a>, sampSize, maxRate )</div>
+		<div class="samp">&nbsp;AutoCapture( <a href="#pop_str_pth" data-transition="pop" data-rel="popup">folder</a>, <a href="#pop_str_pth" data-transition="pop" data-rel="popup">fileName</a>, <a href="#pop_num_int" data-transition="pop" data-rel="popup">maxCount</a> )</div>
+		<div class="samp">&nbsp;SetOnReady( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<div class="samp">&nbsp;SetOnMotion( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<div class="samp">&nbsp;SetOnPicture( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<div class="samp">&nbsp;SetOnFocus( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+    	<div class="samp">&nbsp;GetPixelData( <a href="#pop_str_fmt" data-transition="pop" data-rel="popup">format</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+    	<div class="samp">&nbsp;FindFaces( maxFaces )</div>
+		<br>
+
+	</div><!-- /content -->
+
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_int" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_srw" class="ui-content"><b>number</b> - fraction of screen width</div>
+<div data-role="popup" id="pop_num_srh" class="ui-content"><b>number</b> - fraction of screen height</div>
+<div data-role="popup" id="pop_num_prw" class="ui-content"><b>number</b> - fraction of parent width</div>
+<div data-role="popup" id="pop_num_prh" class="ui-content"><b>number</b> - fraction of parent height</div>
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_str_pth" class="ui-content"><b>string</b> - "/absolute/" or "relative/"</div>
+<div data-role="popup" id="pop_str_fmt" class="ui-content"><b>string</b> - format</div>
+<div data-role="popup" id="pop_str_mod" class="ui-content"><b>string</b> - mode</div>
+<div data-role="popup" id="pop_str_arr" class="ui-content"><b>string</b> - comma separated</div>
+<div data-role="popup" id="pop_bin" class="ui-content"><b>boolean</b></div>
+<div data-role="popup" id="pop_fnc" class="ui-content"><b>function</b> - (args)</div>
+</div><!-- /page -->
+
+</body>
+</html>

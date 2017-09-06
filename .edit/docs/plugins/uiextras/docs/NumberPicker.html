@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>NumberPicker</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a" >
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>NumberPicker</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	
+		<p>Create NumberPicker objects using the <b>CreateNumberPicker</b> method of the UIExtras object: </p>
+		
+		<div class="samp">&nbsp;picker = uix.CreateNumberPicker( value, options );</div>
+
+		<p>When the NumberPicker reaches the first or last item in the list, it will cycle to the other end. To stop cycling, use the <b>NoCycle</b> option.</p>
+
+		<p>Use the <b>SetOnChange</b> method to set the name of a function to be called when the value changes.</p>
+
+		<p>You can get the current value at any time using the <b>GetValue</b> method, and the <b>SetValue</b> method to set the current value.</p>
+
+		<p>Use the <b>SetRange</b> method to set the minimum and maximum values.</p>
+
+		<div data-role="collapsible" data-collapsed="true" data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example</h3>
+			<div id="examp1" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				function OnStart() <br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" ); <br>
+				<br>
+				&nbsp;uix = app.CreateUIExtras();<br>
+				&nbsp;<br>
+				<b id="snip1" style="font-size:100%">
+				&nbsp;picker = uix.CreateNumberPicker( 5, "NoCycle" );<br>
+				&nbsp;picker.SetRange( -10, 10 );<br>
+				&nbsp;picker.SetOnChange( OnChange );<br>
+				&nbsp;lay.AddChild( picker );<br>
+				</b>
+				&nbsp;<br>
+				&nbsp;app.AddLayout( lay );<br>
+				} <br>
+				<br>
+				function OnChange( value )<br>
+				{<br>
+				&nbsp;app.ShowPopup( value );<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>By default, the NumberPicker will display values to one decimal place. Use the <b>SetDecimalPlaces</b> method to change this.</p>
+
+		<p>The decimal separator character can be changed if required by using the <b>SetDecimalSeparator</b> method.</p>
+
+		<div data-role="collapsible" data-collapsed="true" data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Two decimal places</h3>
+			<div id="examp2" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				function OnStart() <br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" ); <br>
+				<br>
+				&nbsp;uix = app.CreateUIExtras();<br>
+				&nbsp;<br>
+				<b id="snip2" style="font-size:100%">
+				&nbsp;picker = uix.CreateNumberPicker( 0 );<br>
+				&nbsp;picker.SetDecimalPlaces( 2 );<br>
+				&nbsp;picker.SetValue( 5.55 );<br>
+				&nbsp;picker.SetOnChange( OnChange );<br>
+				&nbsp;lay.AddChild( picker );<br>
+				</b>
+				&nbsp;<br>
+				&nbsp;app.AddLayout( lay );<br>
+				} <br>
+				<br>
+				function OnChange( value )<br>
+				{<br>
+				&nbsp;app.ShowPopup( value );<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>The following methods are available on the NumberPicker object:</p>
+
+	    <div class="samp">&nbsp;GetType()</div>
+		<div class="samp">&nbsp;SetOnChange( callback )</div>
+    	<div class="samp">&nbsp;SetValue( value )</div>
+    	<div class="samp">&nbsp;GetValue()</div>
+    	<div class="samp">&nbsp;SetRange( min, max )</div>
+    	<div class="samp">&nbsp;SetDecimalPlaces( count )</div>
+		<div class="samp">&nbsp;SetDecimalSeparator( char )</div>
+		<div class="samp">&nbsp;SetTextColor( color )</div>
+
+		<br>
+
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

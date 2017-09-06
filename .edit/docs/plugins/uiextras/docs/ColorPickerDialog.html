@@ -1,0 +1,151 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>ColorPickerDialog</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a" >
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>ColorPickerDialog</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	
+		<p>Create ColorPickerDialog objects using the <b>CreateColorPickerDialog</b> method of the UIExtras object: </p>
+		
+		<div class="samp">&nbsp;picker = uix.CreateColorPickerDialog( title, red, green, blue, alpha, options );</div>
+		
+		<p>By default the ColorPickerDialog will have a title bar, use the <b>NoTitle</b> option to remove the title bar.</p>
+
+		<p>Use the <b>NoAlpha</b> option to remove the transparency slider from the dialog. When using the NoAlpha option, the alpha parameter of the CreateColorPickerDialog method will be ignored.</p>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - With Transparency Slider</h3>
+			<div id="examp1" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				var red = 255;<br>
+				var green = 0;<br>
+				var blue = 0;<br>
+				var alpha = 255;<br>
+				<br>
+				function OnStart() <br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br>
+				<br>
+				&nbsp;btn = app.CreateButton( "Pick Color", 0.3, 0.1 ); <br>
+				&nbsp;btn.SetOnTouch( btn_OnTouch );<br>
+				&nbsp;btn.SetBackColor( "#FF0000" );<br>
+				&nbsp;lay.AddChild( btn ); <br>
+				<br>
+				&nbsp;app.AddLayout( lay );<br>
+				&nbsp;<br>
+				&nbsp;uix = app.CreateUIExtras();<br>
+				} <br>
+				<br>
+				function btn_OnTouch() <br>
+				{ <br>
+				<b id="snip1" style="font-size:100%">
+				&nbsp;picker = uix.CreateColorPickerDialog( "Pick a Color", red, green, blue, alpha );<br>
+				&nbsp;picker.SetOnOk( picker_OnOk );<br>
+				&nbsp;picker.Show();<br>
+				</b>
+				}<br>
+				<br>
+				function picker_OnOk( r, g, b, a )<br>
+				{<br>
+				&nbsp;red = r;<br>
+				&nbsp;green = g;<br>
+				&nbsp;blue = b;<br>
+				&nbsp;alpha = a;<br>
+				&nbsp;<br>
+				&nbsp;var hex = picker.RGBAtoHex( r, g, b, a );   <br>
+				&nbsp;btn.SetBackColor( hex );<br>
+				&nbsp;<br>
+				&nbsp;app.ShowPopup( "RGBA(" + r + ", " + g + ", " + b + ", " + a + ")" );<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Without Transparency Slider</h3>
+			<div id="examp2" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				var red = 255;<br>
+				var green = 0;<br>
+				var blue = 0;<br>
+				<br>
+				function OnStart() <br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br>
+				<br>
+				&nbsp;btn = app.CreateButton( "Pick Color", 0.3, 0.1 ); <br>
+				&nbsp;btn.SetOnTouch( btn_OnTouch );<br>
+				&nbsp;btn.SetBackColor( "#FF0000" );<br>
+				&nbsp;lay.AddChild( btn ); <br>
+				<br>
+				&nbsp;app.AddLayout( lay );<br>
+				&nbsp;<br>
+				&nbsp;uix = app.CreateUIExtras();<br>
+				} <br>
+				<br>
+				function btn_OnTouch() <br>
+				{ <br>
+				<b id="snip2" style="font-size:100%">
+				&nbsp;picker = uix.CreateColorPickerDialog( "Pick a Color", red, green, blue, -1, "NoAlpha" );<br>
+				&nbsp;picker.SetOnOk( picker_OnOk );<br>
+				&nbsp;picker.Show();<br>
+				</b>
+				}<br>
+				<br>
+				function picker_OnOk( r, g, b )<br>
+				{<br>
+				&nbsp;red = r;<br>
+				&nbsp;green = g;<br>
+				&nbsp;blue = b;<br>
+				&nbsp;<br>
+				&nbsp;var hex = picker.RGBtoHex( r, g, b );   <br>
+				&nbsp;btn.SetBackColor( hex );<br>
+				&nbsp;<br>
+				&nbsp;app.ShowPopup( "RGB(" + r + ", " + g + ", " + b + ")" );<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>The following methods are available on the ColorPickerDialog object:</p>
+
+	    <div class="samp">&nbsp;GetType()</div>
+	    <div class="samp">&nbsp;SetTitle( title )</div>
+		<div class="samp">&nbsp;Show()</div>
+		<div class="samp">&nbsp;Hide()</div>
+		<div class="samp">&nbsp;Dismiss()</div>
+		<div class="samp">&nbsp;SetOnOk( callback )</div>
+		<div class="samp">&nbsp;RGBAtoHex( r, g, b, a )</div>
+		<div class="samp">&nbsp;RGBtoHex( r, g, b )</div>
+
+		<br>
+
+		<p>The ColorPickerDialog uses the ColorPickerView library by danielnilsson9, licensed under the Apache 2.0 License.</p>
+
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

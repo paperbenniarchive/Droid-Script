@@ -1,0 +1,54 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>IsMotorIdle</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>IsMotorIdle</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p> The <b>IsMotorIdle</b> function checks if the specified motor ("A","B","C") is currently powered.  This
+		can be useful in order to check if a previously sent motor command has completed.</p>
+		
+		<div class="samp">&nbsp;idle = nxt.IsMotorIdle( motor );</div><br>
+	
+		<div data-role="collapsible" data-collapsed="false"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example</h3>
+			<div id="examp1" style="font-size:70%">
+				
+				  <b id="snip1" style="font-size:100%">
+				  &nbsp;&nbsp;idle = nxt.IsMotorIdle( "A" );<br>
+				  </b>
+				
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+			</div>
+		</div>
+		
+	
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

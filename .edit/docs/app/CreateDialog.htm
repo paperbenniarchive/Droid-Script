@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>CreateDialog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+<script src="../js/energize-min.js"></script>
+<script src="../js/jquery-1.8.1.min.js"></script>
+<script src="../../app.js"></script>
+<script src="../js/example.js"></script>
+<link rel="stylesheet" href="../css/docs.css" />
+<script src="../js/common.js"></script>
+<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+
+</head>
+
+<body>
+
+<div data-role="page" data-theme="a">
+
+<div data-role="header" data-position="fixed">
+ <a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a>
+ <h1>CreateDialog</h1>
+</div><!-- /header -->
+
+<div data-role="content">
+
+  <p>Custom dialog boxes can be used to display temporary information or collect data from the user. They are useful for displaying configuration or settings controls.</p>
+  <p>You can add all types of control to a <b>CustomDialog</b> object. Dialogs are resizeable and you can also change the look of them so that they fit in with the theme of your application.</p>
+
+  <p>Create a custom dialog object using the <b>CreateDialog</b> method of the <b>app</b> object:<p>
+  <div class="samp">&nbsp;dlg = app.CreateDialog( <a href="#pop_str" data-transition="pop" data-rel="popup">title</a>, <a href="#pop_str_opt1" data-transition="pop" data-rel="popup">options</a> );</div>
+  <div data-role="popup" id="pop_str_opt1" class="ui-content"><b>string</b> - comma separated<br>
+	&nbsp;&nbsp;"NoCancel" - Back button will not dismiss dialog<br>
+	&nbsp;&nbsp;"AutoCancel" - Touching outside dialog will dismiss import<br>
+	&nbsp;&nbsp;"NoTitle" - Removes dialog title<br>
+	&nbsp;&nbsp;"NoFocus" - Prevents dialog gaining focus<br>
+	&nbsp;&nbsp;"NoDim" - Prevents area outside dialog from dimming.<br>
+  </div>
+
+  <p>A custom dialog needs a layout to add the controls to. Use the <b>CreateLayout</b> method of the <b>app</b> object to add a layout.</p>
+
+  <div class="samp">&nbsp;layDlg = app.CreateLayout( <a href="#pop_str" data-transition="pop" data-rel="popup">type</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> );<br>
+  &nbsp;dlg.AddLayout( layDlg );</div>
+
+  <p>Use the <b>Show</b> method to show the dialog.</p>
+
+   <div class="samp">&nbsp;dlg.Show();</div>
+
+   <p>And the <b>Dismiss</b> method when you want to close it.</p>
+
+  <div class="samp">&nbsp;dlg.Dismiss();</div>
+  <p>The following example shows how to create a simple CustomDialog on the click of a button. A layout for the dialog is created and a button for hiding the dialog is added to the layout.</p>
+
+
+  <!-- Start of example app -->
+<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+<h3>Example</h3>
+<div id="examp1" style="font-size:70%">
+  <br>
+function OnStart()  <br>
+{ <br>
+&nbsp;&nbsp;lay = app.CreateLayout( "linear", "VCenter,FillXY" );<br>
+<br>
+&nbsp;&nbsp;btn = app.CreateButton( "Show Dialog", 0.6, 0.1 );<br>
+&nbsp;&nbsp;btn.SetOnTouch( btn_OnTouch );<br>
+&nbsp;&nbsp;lay.AddChild( btn );<br>
+<br>
+&nbsp;&nbsp;app.AddLayout( lay );<br>
+}<br>
+<br>
+function btn_OnTouch()<br>
+{<br>
+&nbsp;&nbsp;dlg = app.CreateDialog( "Custom Dialog" );<br>
+<br>
+&nbsp;&nbsp;layDlg = app.CreateLayout( "linear", "VCenter,FillXY" );<br>
+&nbsp;&nbsp;layDlg.SetSize( 0.7, 0.3 );<br>
+&nbsp;&nbsp;dlg.AddLayout( layDlg );<br>
+<br>
+&nbsp;&nbsp;chk = app.CreateCheckBox( "Check Box" );<br>
+&nbsp;&nbsp;chk.SetMargins( 0, 0.02, 0, 0.02 );<br>
+&nbsp;&nbsp;layDlg.AddChild( chk );<br>
+<br>
+&nbsp;&nbsp;btnDlg = app.CreateButton( "Close Dialog", 0.6, 0.1 );<br>
+&nbsp;&nbsp;btnDlg.SetOnTouch( btnDlg_OnTouch );<br>
+&nbsp;&nbsp;layDlg.AddChild( btnDlg );<br>
+<br>
+&nbsp;&nbsp;dlg.Show();<br>
+
+}<br>
+<br>
+function btnDlg_OnTouch()<br>
+{<br>
+&nbsp;&nbsp;dlg.Dismiss();<br>
+}
+</div>
+<div name="divCopy" align="right">
+<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+</div>
+</div> <!-- end of example app -->
+
+
+    <p>The following methods are available on the CustomDialog object:</p>
+      <div class="samp">&nbsp;AddLayout( <a href="#pop_obj_lay" data-transition="pop" data-rel="popup">layout</a> )</div>
+      <div class="samp">&nbsp;RemoveLayout( <a href="#pop_obj_lay" data-transition="pop" data-rel="popup">layout</a> )</div>
+      <div class="samp">&nbsp;SetTitle( <a href="#pop_str" data-transition="pop" data-rel="popup">title</a> )</div>
+      <div class="samp">&nbsp;AdjustColor( hue, sat, bright, const )</div>
+      <div class="samp">&nbsp;Show()</div>
+      <div class="samp">&nbsp;Hide()</div>
+      <div class="samp">&nbsp;Dismiss()</div>
+      <div class="samp">&nbsp;SetBackColor( <a href="#pop_str_col" data-transition="pop" data-rel="popup">clr</a> )</div>
+      <div class="samp">&nbsp;SetBackground( <a href="#pop_str_pth" data-transition="pop" data-rel="popup">file</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> )</div>
+      <div class="samp">&nbsp;SetSize( <a href="#pop_num_srd" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srd" data-transition="pop" data-rel="popup">height</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> )</div>
+      <div class="samp">&nbsp;SetPosition( <a href="#pop_num_prd" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prd" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_srd" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srd" data-transition="pop" data-rel="popup">height</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> )</div>
+      <div class="samp">&nbsp;SetOnTouch( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+      <div class="samp">&nbsp;SetOnCancel( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+      <div class="samp">&nbsp;SetOnTouch( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+    </p>
+
+  </div><!-- /content -->
+
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_srd" class="ui-content"><b>number</b> - fraction of screen size</div>
+<div data-role="popup" id="pop_num_prd" class="ui-content"><b>number</b> - fraction of parent size</div>
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_str_col" class="ui-content"><b>string</b><br>&nbsp;&nbsp;hexadecimal: "#rrggbb", "#aarrggbb"<br>&nbsp;&nbsp;colourName: "red",  "green", ...</div>
+<div data-role="popup" id="pop_str_pth" class="ui-content"><b>string</b> - "/absolute/" or "relative/"</div>
+<div data-role="popup" id="pop_str_arr" class="ui-content"><b>string</b> - comma separated</div>
+<div data-role="popup" id="pop_obj" class="ui-content"><b>object</b></div>
+<div data-role="popup" id="pop_obj_lay" class="ui-content"><b>object</b> - DS layout</div>
+<div data-role="popup" id="pop_fnc" class="ui-content"><b>function</b> - (args)</div>
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_str_col" class="ui-content"><b>string</b><br>&nbsp;&nbsp;hexadecimal: "#rrggbb", "#aarrggbb"<br>&nbsp;&nbsp;colourName: "red",  "green", ...</div>
+<div data-role="popup" id="pop_str_pth" class="ui-content"><b>string</b> - "/absolute/" or "relative/"</div>
+<div data-role="popup" id="pop_str_arr" class="ui-content"><b>string</b> - comma separated</div>
+<div data-role="popup" id="pop_obj" class="ui-content"><b>object</b></div>
+<div data-role="popup" id="pop_obj_lay" class="ui-content"><b>object</b> - DS layout</div>
+<div data-role="popup" id="pop_fnc" class="ui-content"><b>function</b> - (args)</div>
+</div><!-- /page -->
+
+</body>
+</html>
+		<meta charset="utf-8">
+		<meta

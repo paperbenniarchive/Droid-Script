@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>FloatingActionButton</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a" >
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>FloatingActionButton</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+	
+		<p>Create FloatingActionButton objects using the <b>CreateFAButton</b> method of the UIExtras object: </p>
+		
+		<div class="samp">&nbsp;fab = uix.CreateFAButton( icon, options );</div>
+		
+		<p>The FloatingActionButton supports FontAwesome icons. The icon parameter should be a FontAwesome icon definition, for example, <b><i>[fa-check]</i></b>. There are two sizes of FloatingActionButton, <b>Normal</b>(default) and <b>Mini</b>. Use the Mini size by passing "Mini" as the options parameter.</p>
+
+		<p>The color of the icon can be set using the <b>SetIconColor</b> method.</p>
+
+		<div class="samp">&nbsp;fab.SetIconColor( "#0000FF" );</div>
+
+		<p>The color of the circle can be set using the <b>SetButtonColors</b> method, passing the colors for the normal and pressed states:</p>
+
+		<div class="samp">&nbsp;fab.SetButtonColors( "#db4437", "#c33d32" );</div>
+
+		<br>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example</h3>
+			<div id="examp1" style="font-size:70%">
+				app.LoadPlugin( "UIExtras" );<br>
+				<br>
+				function OnStart()<br>
+				{ <br>
+				&nbsp;lay = app.CreateLayout( "Linear", "FillXY" );<br>
+				 <br>
+				&nbsp;txt = app.CreateText( "My Notes", 1.0 );<br>
+				&nbsp;txt.SetTextSize( 28 );<br>
+				&nbsp;txt.SetTextColor( "#FFFFFF" );<br>
+				&nbsp;txt.SetPadding( 0, 0.01, 0, 0.01 );<br>
+				&nbsp;txt.SetBackColor( "#1cbcff" );<br>
+				&nbsp;lay.AddChild( txt );<br>
+				 <br>
+				&nbsp;list = app.CreateList( "", 1.0, 0.95 );<br>
+				&nbsp;list.SetBackColor( "#FFFFFF" );<br>
+				&nbsp;list.SetTextColor1( "#888888" );<br>
+				&nbsp;list.SetTextColor2( "#000000" );<br>
+				&nbsp;lay.AddChild( list );<br>
+				&nbsp;app.AddLayout( lay );<br>
+				<br>				
+				&nbsp;uix = app.CreateUIExtras();<br>
+				<br>
+				<b id="snip1" style="font-size:100%">
+				&nbsp;layFab = app.CreateLayout( "Linear", "FillXY, Bottom, Right, TouchThrough" );<br>				
+				&nbsp;fab = uix.CreateFAButton( "[fa-pencil]" );<br>
+				&nbsp;fab.SetMargins( 0.02, 0.01, 0.02, 0.01 );<br>
+				&nbsp;fab.SetButtonColors( "#db4437", "#c33d32" );<br>
+				&nbsp;fab.SetOnTouch( fab_OnTouch );<br>
+				&nbsp;layFab.AddChild( fab );<br>
+				</b>
+				 <br>
+				&nbsp;app.AddLayout( layFab );<br>
+				 <br>
+				&nbsp;app.ShowPopup( "Press the FAButton to add notes" );<br>
+				}<br>
+				<br>
+				function fab_OnTouch()<br>
+				{<br>
+				&nbsp;dlg = app.CreateDialog( "New Note" );<br>
+				<br>
+				&nbsp;dlgLay = app.CreateLayout( "Linear", "Vertical, FillXY" );<br>
+				&nbsp;dlgLay.SetPadding( 0.02, 0, 0.02, 0.02 );<br>
+				&nbsp;dlg.AddLayout( dlgLay );<br>
+				<br>
+				&nbsp;dlgTxt = app.CreateTextEdit( "", 0.8, 0.2, "Multiline" );<br>
+				&nbsp;dlgTxt.SetHint( "Enter notes..." );<br>
+				&nbsp;dlgLay.AddChild( dlgTxt );<br>
+				 <br>
+				&nbsp;dlgBtn = app.CreateButton( "Ok" );<br>
+				&nbsp;dlgBtn.SetOnTouch( dlgBtn_OnTouch );<br>
+				&nbsp;dlgLay.AddChild( dlgBtn );<br>
+				<br>
+				&nbsp;dlg.Show();<br>
+				}<br>
+				<br>
+				function dlgBtn_OnTouch()<br>
+				{<br>
+				&nbsp;var itemTitle = "Note " + (list.GetLength() + 1);<br>
+				&nbsp;list.AddItem( itemTitle, dlgTxt.GetText() );<br>
+				 <br>
+				&nbsp;dlg.Dismiss();<br>
+				}
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>The following methods are available on the FloatingActionButton object:</p>
+
+	    <div class="samp">&nbsp;GetType()</div>
+		<div class="samp">&nbsp;SetIcon( icon )</div>
+		<div class="samp">&nbsp;SetIconColor( color )</div>
+		<div class="samp">&nbsp;SetButtonColors( normal, pressed )</div>
+		<div class="samp">&nbsp;SetOnTouch( callback )</div>
+		<div class="samp">&nbsp;SetLabel( label )</div>
+
+		<br>
+
+		<p>The FloatingActionButton control uses the android-floating-action-button library from futuresimple, licensed under the Apache 2.0 License.</p>
+
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>AddDrawer</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>AddDrawer</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+		<p> Use the <b>AddDrawer</b> method to add a layout as drawer to the App. They can be located on the left or right side in your app and can be shown when sliding the finger from the border to the middle of the screen.</p>
+
+		<p>Note: Drawer layouts are equal to normal layouts - they are just added to the app via addDrawer() instead of addLayout()</p>
+
+		<div class="samp">&nbsp;app.AddDrawer( <a href="#pop_obj_lay" data-transition="pop" data-rel="popup">layout</a>, <a href="#pop_str_sid" data-transition="pop" data-rel="popup">side</a>, <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a> );</div>
+
+		<p>See also <a href="../Layouts.htm">Layouts</a></p>
+
+		<div data-role="collapsible" data-collapsed="false"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - left</h3>
+			<div id="examp1" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				&nbsp;&nbsp;lay = app.CreateLayout( "Linear", "FillXY,VCenter" );<br>
+				<br>
+				&nbsp;&nbsp;txt1 = app.CreateText( "<-- swipe" );<br>
+				&nbsp;&nbsp;txt1.SetTextSize( 30 );<br>
+				&nbsp;&nbsp;lay.AddChild( txt1 );<br>
+				<br>
+				&nbsp;&nbsp;app.AddLayout( lay );<br>
+				<br>
+				&nbsp;&nbsp;layDrawer = app.CreateLayout( "Linear", "VCenter" );<br>
+				&nbsp;&nbsp;layDrawer.SetBackground( "/Sys/Img/BlueBack.png" );<br>
+				<br>
+				&nbsp;&nbsp;txt2 = app.CreateText( "Hello" );<br>
+				&nbsp;&nbsp;txt2.SetTextSize( 40 );<br>
+				&nbsp;&nbsp;layDrawer.AddChild( txt2 );<br>
+				<br>
+				<b id="snip1"  style="font-size:105%">
+					&nbsp;&nbsp;app.AddDrawer( layDrawer, "left", 0.8 );<br>
+				</b>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+
+	</div><!-- /content -->
+
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_srw" class="ui-content"><b>number</b> - fraction of screen width</div>
+<div data-role="popup" id="pop_str_sid" class="ui-content"><b>string</b> - "left", "right"</div>
+<div data-role="popup" id="pop_obj" class="ui-content"><b>object</b></div>
+<div data-role="popup" id="pop_obj_lay" class="ui-content"><b>object</b> - DS layout</div>
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_srw" class="ui-content"><b>number</b> - fraction of screen width</div>
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_obj" class="ui-content"><b>object</b></div>
+<div data-role="popup" id="pop_obj_lay" class="ui-content"><b>object</b> - DS layout</div>
+</div><!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>SeekBar</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet" href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div data-role="page" data-theme="a" >
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>SeekBars</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+		<p> Create SeekBars using the <b>CreateSeekBar</b> method of the <b>app</b> object: </p>
+
+		<div class="samp">&nbsp;skb = app.CreateSeekBar( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> );</div>
+
+		<p> The <b>SetRange</b> method of the SeekBar object to sets the value range of the SeekBar and the <b>SetValue</b> method
+		sets the current value.</p>
+
+		<p> Use the <b>SetOnTouch</b> method of the SeekBar object to set the name of a function you want to be called when the SeekBar is touched.
+		 You can read the 'value' parameter in your callback function to get the position value of the SeekBar</p>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+				<h3>Example</h3>
+				<div id="examp1" style="font-size:70%">
+					function OnStart()<br>
+					{<br>
+					 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
+					 <b id="snip1"  style="font-size:100%">
+					 &nbsp;&nbsp;skb = app.CreateSeekBar( 0.8 );<br>
+					 &nbsp;&nbsp;skb.SetRange( 1.0 );<br>
+					 &nbsp;&nbsp;skb.SetValue( 0.5 );<br>
+					 &nbsp;&nbsp;skb.SetOnTouch( skb_OnTouch );<br>
+					 &nbsp;&nbsp;lay.AddChild( skb );<br><br>
+					 </b>
+					 &nbsp;&nbsp;app.AddLayout( lay );<br>
+					}<br>
+					<br>
+					function skb_OnTouch( <a href="#pop_num_flt" data-transition="pop" data-rel="popup">value</a> )<br>
+					{<br>
+					 &nbsp;&nbsp;app.ShowPopup( "Value = " + value );<br>
+					}<br>
+				</div>
+				<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+				</div>
+		</div>
+
+		<br>
+		<p>The following methods are avaiable on the SeekBar object:</p>
+
+		<div class="samp">&nbsp;SetVisibility( <a href="#pop_bin" data-transition="pop" data-rel="popup">visibility</a> )</div>
+		<div class="samp">&nbsp;GetVisibility()</div>
+		<div class="samp">&nbsp;SetPadding( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">right</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">bottom</a> )</div>
+		<div class="samp">&nbsp;SetMargins( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">right</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">bottom</a> )</div>
+		<div class="samp">&nbsp;SetPosition( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;SetSize( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;GetWidth()</div>
+		<div class="samp">&nbsp;GetHeight()</div>
+
+		<div class="samp">&nbsp;SetOnClick( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<div class="samp">&nbsp;GetValue()</div>
+		<div class="samp">&nbsp;SetValue( <a href="#pop_num_flt" data-transition="pop" data-rel="popup">value</a> )</div>
+		<div class="samp">&nbsp;SetRange( <a href="#pop_num_flt" data-transition="pop" data-rel="popup">range</a> )</div>
+		<div class="samp">&nbsp;SetMaxRate( ms )</div>
+
+		<br>
+
+	</div><!-- /content -->
+
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_flt" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_srw" class="ui-content"><b>number</b> - fraction of screen width</div>
+<div data-role="popup" id="pop_num_srh" class="ui-content"><b>number</b> - fraction of screen height</div>
+<div data-role="popup" id="pop_num_prw" class="ui-content"><b>number</b> - fraction of parent width</div>
+<div data-role="popup" id="pop_num_prh" class="ui-content"><b>number</b> - fraction of parent height</div>
+<div data-role="popup" id="pop_bin" class="ui-content"><b>boolean</b></div>
+<div data-role="popup" id="pop_fnc" class="ui-content"><b>function</b> - (args)</div>
+</div><!-- /page -->
+
+</body>
+</html>

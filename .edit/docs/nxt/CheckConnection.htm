@@ -1,0 +1,42 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>CheckConnection</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet" href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>CheckConnection</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p>The <b>CheckConnection</b> function returns <b>true</b> if the NXT brick is currently
+		connected to the phone/tablet but it will show a popup warning message and return <b>false</b> if no
+		brick is currently connected.</p>
+		
+		<p>This function is useful if you want to warn the user that they have no connection when they
+		start pressing buttons etc in your program.</p>
+				
+		<div class="samp">&nbsp;ok = nxt.CheckConnection();</div><br>
+	
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

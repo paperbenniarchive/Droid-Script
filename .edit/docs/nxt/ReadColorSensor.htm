@@ -1,0 +1,79 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>ReadColorSensor</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>ReadColorSensor</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p>The <b>ReadColorSensor</b> function reads the color currently being 'seen' by the NXT color sensor.
+		(Note: brick firmware 1.28 or greater is required for this function)</p>
+		
+		<p>The <b>input</b> parameter should be an NXT input port number between 1 and 4 (which the
+		color sensor is plugged into).</p>
+		
+		<p>The <b>mode</b> parameter should be one of the following values:- 
+		<b>"ColorDetect", "LightSense", "RedSense", "GreenSense", "BlueSense"</b>.</p>
+		
+		<p>If the mode <b>ColorDetect</b> is chosen, then the returned values will be a number between
+		1 and 6 which represent the following colors: black, blue, green, yellow, red, white.</p>
+		
+		<p>You can use the <b>ToColorName</b> function to convert from these six values to a color name</p>
+		
+		<p>If any of the other modes are chosen, then the result will be a color intensity value between 0 and 1023.</p>
+			
+		<div class="samp">&nbsp;val = nxt.ReadColorSensor( input, mode );</div><br>
+	
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Sense color on port 3</h3>
+			<div id="examp1" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+					&nbsp;&nbsp;nxt = app.CreateNxt();<br>
+					&nbsp;&nbsp;app.SetMenu( "Connect,Sense Color" ); <br>
+				}<br><br>
+				function OnMenu( name )<br>
+				{<br>
+					&nbsp;&nbsp;if( name=="Connect" )<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;nxt.ShowDevices();<br><br>
+					&nbsp;&nbsp;else if( name=="Sense Color" )<br>
+					&nbsp;&nbsp;{<br>
+					<b id="snip1"  style="font-size:100%">
+					&nbsp;&nbsp;&nbsp;&nbsp;clr = nxt.ReadColorSensor( 3, "ColorDetect" );<br>
+					</b>
+					&nbsp;&nbsp;&nbsp;&nbsp;app.ShowPopup( nxt.ToColorName( clr ) );<br>
+					&nbsp;&nbsp;}<br>
+				}<br><br>
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+	
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>MediaPlayer</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+		
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>MediaPlayer</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p>The <b>MediaPlayer</b> object can be used to play sound files from the phone or tablet.</p>
+
+		<p>Create a MediaPlayer object using the <b>CreateMediaPlayer</b> method of the <b>app</b> object:
+
+		<div class="samp">&nbsp;player = app.CreateMediaPlayer();</div>
+
+		<p>Use the <b>SetFile</b> method of the MediaPlayer object to set the sound file to play. Supported sound file types include .ogg and .mp3.</p>
+
+		<div class="samp">&nbsp;player.SetFile( "/Sys/Snd/Poing.ogg" );</div>
+
+		<p>To play sound files from your App sound assets, the file name passed to the SetFile method must start with <b>"Snd/"</b>. For example:</p>
+
+		<div class="samp">&nbsp;player.SetFile( "Snd/MyAppSound.mp3" );</div>
+
+		<p>When the sound file is ready for playback, the <b>OnReady</b> callback function will be called. Use the <b>SetOnReady</b> method to set the name of your OnReady callback function.</p>
+	
+		<div data-role="collapsible" data-collapsed="false"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example</h3>
+			<div id="examp1" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				<b id="snip1"  style="font-size:100%">
+				&nbsp;&nbsp;player = app.CreateMediaPlayer();<br>
+				&nbsp;&nbsp;player.SetOnReady( player_OnReady );<br>
+				&nbsp;&nbsp;player.SetFile( "/Sys/Snd/Trill.ogg" );<br>
+				</b>
+				}<br>
+				<br>
+				function player_OnReady()<br>
+				{<br>
+				&nbsp;&nbsp;app.ShowPopup( "OnReady" );<br>
+				&nbsp;&nbsp;player.Play();<br>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>The <b>SeekTo</b> method can be used to adjust the playback position by passing in the time in seconds. Passing in <b>0</b> will set the playback position to the beginning of the sound file.</p>
+		
+		<div class="samp">&nbsp;player.SeekTo( 0 );</div>
+
+		<p>When the sound file has finished playing, the <b>OnComplete</b> callback function will be called. Use the <b>SetOnComplete</b> method to set the name of your OnComplete callback function.</p>
+
+		<div data-role="collapsible" data-collapsed="false" data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - OnComplete</h3>
+			<div id="examp2" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				&nbsp;&nbsp;lay = app.CreateLayout( "Linear", "FillXY,VCenter" );<br>
+				<br>	
+				&nbsp;&nbsp;btn = app.CreateButton( "Play", 0.4, 0.1 );<br>
+				&nbsp;&nbsp;btn.SetOnTouch( btn_OnTouch );<br>
+				&nbsp;&nbsp;lay.AddChild( btn );<br>
+				<br>
+				&nbsp;&nbsp;app.AddLayout( lay );<br>
+				<br>
+				<b id="snip1"  style="font-size:100%">
+				&nbsp;&nbsp;player = app.CreateMediaPlayer();<br>
+				&nbsp;&nbsp;player.SetOnComplete( player_OnComplete );<br>
+				&nbsp;&nbsp;player.SetFile( "/Sys/Snd/Poing.ogg" );<br>
+				</b>
+				}<br>
+				<br>
+				function btn_OnTouch()<br>
+				{<br>
+				&nbsp;&nbsp;player.SeekTo( 0 );<br>
+				&nbsp;&nbsp;player.Play();<br>
+				}<br>
+				<br>
+				function player_OnComplete()<br>
+				{<br>
+				&nbsp;&nbsp;app.ShowPopup( "OnComplete" );<br>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+
+		<p>The following methods are available on the MediaPlayer object:</p>
+
+		<div class="samp">&nbsp;SetFile( <a href="#pop_str_pth" data-transition="pop" data-rel="popup">fileName</a> )</div>
+	    <div class="samp">&nbsp;SetLooping( loop )</div>
+	    <div class="samp">&nbsp;Close() </div>
+	    <div class="samp">&nbsp;Play() </div>
+	    <div class="samp">&nbsp;Pause() </div>
+	    <div class="samp">&nbsp;Stop() </div>
+	    <div class="samp">&nbsp;IsReady() </div>
+		<div class="samp">&nbsp;IsPlaying() </div>
+	    <div class="samp">&nbsp;IsLooping() </div>
+	    <div class="samp">&nbsp;SeekTo( <a href="#pop_num_flt" data-transition="pop" data-rel="popup">seconds</a> ) </div>
+	    <div class="samp">&nbsp;GetPosition() </div>
+	    <div class="samp">&nbsp;GetDuration() </div>
+	    <div class="samp">&nbsp;SetVolume( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">right</a> ) </div>
+	    <div class="samp">&nbsp;SetOnReady( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> ) </div>
+	    <div class="samp">&nbsp;SetOnComplete( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> ) </div>
+	    <div class="samp">&nbsp;SetOnSeekDone( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> ) </div>
+
+	    </p>
+	
+	</div><!-- /content -->
+	
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_flt" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_prw" class="ui-content"><b>number</b> - fraction of parent width</div>
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_str_pth" class="ui-content"><b>string</b> - "/absolute/" or "relative/"</div>
+<div data-role="popup" id="pop_fnc" class="ui-content"><b>function</b> - (args)</div>
+</div><!-- /page -->
+
+</body>
+</html>

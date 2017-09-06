@@ -1,0 +1,68 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>SendMail</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>SendMail</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p>The <b>SendMail</b> function sends a message to the NXT brick's mail box.  This message can be read
+		using a normal NXT-G program running on the brick.  This allows you to communicate with NXT-G programs from your phone or tablet.</p>
+		
+		<p>The <b>mailbox</b> parameter is the target mailbox number and can be a value between <b>1</b> and <b>10</b>.</p>
+		
+		<p>The <b>type</b> parameter should be one of the following values:- <b>"Text"</b>, <b>"Number"</b> or <b>"Logic"</b> depending on
+		what type of value you wish to send to the brick's mailbox.</p>
+		
+		<div class="samp">&nbsp;nxt.SendMail( mailbox, type, message );</div><br>
+	
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Send message to mailbox 1</h3>
+			<div id="examp1" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+					&nbsp;&nbsp;nxt = app.CreateNxt();<br>
+					&nbsp;&nbsp;app.SetMenu( "Connect,SendMail" ); <br>
+				}<br><br>
+				function OnMenu( name )<br>
+				{<br>
+					&nbsp;&nbsp;if( name=="Connect" )<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;nxt.ShowDevices();<br>
+					&nbsp;&nbsp;else if( name=="SendMail" )<br>
+					<b id="snip1"  style="font-size:100%">
+					&nbsp;&nbsp;&nbsp;&nbsp;nxt.SendMail( 1, "Text", "Hello" );<br>
+					</b>
+				}<br><br>
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+	
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

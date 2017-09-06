@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TextEdit</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet" href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head>
+
+<body>
+
+<div data-role="page" data-theme="a" >
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>TextEdit</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+
+		<p> Create TextEdit objects using the <b>CreateTextEdit</b> method of the <b>app</b> object: </p>
+
+		<div class="samp">&nbsp;edt = app.CreateTextEdit( <a href="#pop_str" data-transition="pop" data-rel="popup">text</a>, <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> );</div>
+
+		<p>You can use the <b>SetOnChange</b> method of the TextEdit to set the name of a function you want to be called when
+		a the text is changed.</p>
+
+		<p>Use the <b>SetText</b> and <b>GetText</b> functions to set and get the text in the TextEdit.</p>
+
+		<div data-role="collapsible" data-collapsed="true" data-mini="true" data-theme="a" data-content-theme="b">
+				<h3>Example - Using OnChange</h3>
+				<div id="examp1" style="font-size:70%">
+					function OnStart()<br>
+					{<br>
+					 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
+					 <b id="snip1"  style="font-size:100%">
+					 &nbsp;&nbsp;edt = app.CreateTextEdit( "Edit me", 0.8, 0.3 );<br>
+					 &nbsp;&nbsp;edt.SetOnChange( edt_OnChange );<br>
+					 &nbsp;&nbsp;lay.AddChild( edt );<br><br>
+					 </b>
+					 &nbsp;&nbsp;txt = app.CreateText( "", 0.8, 0.3 );<br>
+					 &nbsp;&nbsp;txt.SetMargins( 0, 0.02, 0, 0 );<br>
+					 &nbsp;&nbsp;lay.AddChild( txt );<br><br>
+					 &nbsp;&nbsp;app.AddLayout( lay );<br>
+					}<br>
+					<br>
+					function edt_OnChange() &nbsp;<br>
+					{<br>
+					 &nbsp;&nbsp;txt.SetText( edt.GetText() );<br>
+					}<br>
+				</div>
+				<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+				</div>
+		</div>
+
+		<p>You can change the look of a TextEdit using the <b>SetBackColor</b> and <b>SetTextColor</b> functions on the TextEdit object.</p>
+
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+				<h3>Example - Blue on White</h3>
+				<div id="examp2" style="font-size:70%">
+					function OnStart()<br>
+					{<br>
+					 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "VCenter,FillXY" );<br><br>
+					 <b id="snip2"  style="font-size:100%">
+					 &nbsp;&nbsp;edt = app.CreateTextEdit( "Hello", 0.8, 0.4  );<br>
+					 &nbsp;&nbsp;edt.SetTextColor( "#ff6666ff" );<br>
+					 &nbsp;&nbsp;edt.SetBackColor( "#ffffffff" );<br>
+					 &nbsp;&nbsp;lay.AddChild( edt );<br><br>
+					 </b>
+					 &nbsp;&nbsp;app.AddLayout( lay );<br>
+					}<br>
+				</div>
+				<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip2)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp2)">Copy All</a>
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp2)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+				</div>
+		</div>
+
+		<p>You can also set a background image/pattern or background gradient for the List using
+		the <b>SetBackground</b> and <b>SetBackGradient</b> functions.
+		See <a href="Layouts.htm">Layouts</a> for examples of how to use these functions.</p>
+
+		<br>
+		<p>The following methods are available on the TextEdit object:</p>
+
+		<div class="samp">&nbsp;SetVisibility( <a href="#pop_bin" data-transition="pop" data-rel="popup">visibility</a> )</div>
+		<div class="samp">&nbsp;GetVisibility()</div>
+		<div class="samp">&nbsp;SetPadding( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">right</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">bottom</a> )</div>
+		<div class="samp">&nbsp;SetMargins( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_prw" data-transition="pop" data-rel="popup">right</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">bottom</a> )</div>
+		<div class="samp">&nbsp;SetBackground( <a href="#pop_str_pah" data-transition="pop" data-rel="popup">imageFile</a>, <a href="#pop_str_arr" data-transition="pop" data-rel="popup">options</a> )</div>
+		<div class="samp">&nbsp;SetBackColor( <a href="#pop_str_col" data-transition="pop" data-rel="popup">colorCode</a> )</div>
+		<div class="samp">&nbsp;SetBackGradient( <a href="#pop_str_col" data-transition="pop" data-rel="popup">color1</a>, <a href="#pop_str_col" data-transition="pop" data-rel="popup">color2</a>, <a href="#pop_str_col" data-transition="pop" data-rel="popup">color3</a> )</div>
+		<div class="samp">&nbsp;SetBackGradientRadial( <a href="#pop_num_orw" data-transition="pop" data-rel="popup">x</a>, <a href="#pop_num_orh" data-transition="pop" data-rel="popup">y</a>, <a href="#pop_num_ang" data-transition="pop" data-rel="popup">r</a>, <a href="#pop_str_col" data-transition="pop" data-rel="popup">color1</a>, <a href="#pop_str_col" data-transition="pop" data-rel="popup">color2</a>, <a href="#pop_str_col" data-transition="pop" data-rel="popup">color3</a> )</div>
+		<div class="samp">&nbsp;SetPosition( <a href="#pop_num_prw" data-transition="pop" data-rel="popup">left</a>, <a href="#pop_num_prh" data-transition="pop" data-rel="popup">top</a>, <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;SetSize( <a href="#pop_num_srw" data-transition="pop" data-rel="popup">width</a>, <a href="#pop_num_srh" data-transition="pop" data-rel="popup">height</a> )</div>
+		<div class="samp">&nbsp;GetWidth()</div>
+		<div class="samp">&nbsp;GetHeight()</div>
+
+		<div class="samp">&nbsp;SetText( <a href="#pop_str" data-transition="pop" data-rel="popup">text</a> )</div>
+		<div class="samp">&nbsp;GetText()</div>
+		<div class="samp">&nbsp;SetHtml( <a href="#pop_str_htm" data-transition="pop" data-rel="popup">html</a> )</div>
+		<div class="samp">&nbsp;GetHtml()</div>
+		<div class="samp">&nbsp;SetTextColor( <a href="#pop_str_col" data-transition="pop" data-rel="popup">colorCode</a> )</div>
+		<div class="samp">&nbsp;SetTextSize( <a href="#pop_num_int" data-transition="pop" data-rel="popup">size</a> )</div>
+		<div class="samp">&nbsp;GetTextSize( <a href="#pop_str_mod" data-transition="pop" data-rel="popup">mode</a> )</div>
+		<div class="samp">&nbsp;SetHint( <a href="#pop_str" data-transition="pop" data-rel="popup">text</a> )</div>
+		<div class="samp">&nbsp;GetLineCount()</div>
+		<div class="samp">&nbsp;GetMaxLines()</div>
+		<div class="samp">&nbsp;GetLineTop( <a href="#pop_num_int" data-transition="pop" data-rel="popup">lineNum</a> )</div>
+		<div class="samp">&nbsp;GetLineStart( <a href="#pop_num_int" data-transition="pop" data-rel="popup">lineNum</a> )</div>
+		<div class="samp">&nbsp;SetCursorPos( <a href="#pop_num_int" data-transition="pop" data-rel="popup">pos</a> )</div>
+		<div class="samp">&nbsp;GetCursorPos()</div>
+		<div class="samp">&nbsp;GetCursorLine()</div>
+		<div class="samp">&nbsp;SetSelection( <a href="#pop_num" data-transition="pop" data-rel="popup">start</a>, <a href="#pop_num" data-transition="pop" data-rel="popup">stop</a> )</div>
+	    <div class="samp">&nbsp;GetSelectedText()</div>
+	    <div class="samp">&nbsp;GetSelectionStart()</div>
+	    <div class="samp">&nbsp;GetSelectionEnd()</div>
+	    <div class="samp">&nbsp;InsertText( <a href="#pop_str" data-transition="pop" data-rel="popup">text</a>, <a href="#pop_num" data-transition="pop" data-rel="popup">start</a>, <a href="#pop_num" data-transition="pop" data-rel="popup">end</a> )</div>
+	    <div class="samp">&nbsp;ReplaceText( <a href="#pop_str" data-transition="pop" data-rel="popup">text</a>, <a href="#pop_num" data-transition="pop" data-rel="popup">start</a>, <a href="#pop_num" data-transition="pop" data-rel="popup">end</a> )</div>
+	    <div class="samp">&nbsp;SetOnChange( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+	    <div class="samp">&nbsp;SetOnTouch( <a href="#pop_fnc" data-transition="pop" data-rel="popup">callback</a> )</div>
+		<div class="samp">&nbsp;Undo()</div>
+		<div class="samp">&nbsp;Redo()</div>
+		<div class="samp">&nbsp;ClearHistory()</div>
+
+		<br>
+	</div><!-- /content -->
+
+<div data-role="popup" id="pop_num" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_int" class="ui-content"><b>number</b></div>
+<div data-role="popup" id="pop_num_ang" class="ui-content"><b>number</b> - degrees (0-360)</div>
+<div data-role="popup" id="pop_num_srw" class="ui-content"><b>number</b> - fraction of screen width</div>
+<div data-role="popup" id="pop_num_srh" class="ui-content"><b>number</b> - fraction of screen height</div>
+<div data-role="popup" id="pop_num_orw" class="ui-content"><b>number</b> - fraction of object width</div>
+<div data-role="popup" id="pop_num_orh" class="ui-content"><b>number</b> - fraction of object height</div>
+<div data-role="popup" id="pop_num_prw" class="ui-content"><b>number</b> - fraction of parent width</div>
+<div data-role="popup" id="pop_num_prh" class="ui-content"><b>number</b> - fraction of parent height</div>
+<div data-role="popup" id="pop_str" class="ui-content"><b>string</b></div>
+<div data-role="popup" id="pop_str_htm" class="ui-content"><b>string</b> - html</div>
+<div data-role="popup" id="pop_str_col" class="ui-content"><b>string</b><br>&nbsp;&nbsp;hexadecimal: "#rrggbb", "#aarrggbb"<br>&nbsp;&nbsp;colourName: "red",  "green", ...</div>
+<div data-role="popup" id="pop_str_mod" class="ui-content"><b>string</b> - mode</div>
+<div data-role="popup" id="pop_str_arr" class="ui-content"><b>string</b> - comma separated</div>
+<div data-role="popup" id="pop_bin" class="ui-content"><b>boolean</b></div>
+<div data-role="popup" id="pop_fnc" class="ui-content"><b>function</b> - (args)</div>
+</div><!-- /page -->
+
+</body>
+</html>

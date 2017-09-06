@@ -1,0 +1,70 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>AddLayout</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../../../app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>AddLayout</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p> Use the <b>AddLayout</b> method to add your layouts to the App.  Each layout added will be placed on top of the
+		previously added layout.</p>
+		  
+		<p>Note: You can add empty layouts above your main layout and then add or remove objects from these empty layouts at any
+		time to create popup or slide out panel and menu effects.</p>
+		
+		<div class="samp">&nbsp;app.AddLayout( <a href="#pop_obj_lay" data-transition="pop" data-rel="popup">layout</a> );</div><br>
+	
+		<p>See also <a href="../Layouts.htm">Layouts</a></p>
+	
+		<div data-role="collapsible" data-collapsed="false"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Vertical</h3>
+			<div id="examp1" style="font-size:70%">
+				function OnStart()<br>
+				{<br>
+				 &nbsp;&nbsp;lay = app.CreateLayout( "Linear", "Vertical,VCenter" );<br><br>
+				 
+				 &nbsp;&nbsp;txt = app.CreateText( "Hello" );<br>				
+				 &nbsp;&nbsp;lay.AddChild( txt );<br><br>
+				 
+				 <b id="snip1"  style="font-size:105%">
+					&nbsp;&nbsp;app.AddLayout( lay );<br>
+				 </b>
+				}<br>
+			</div>
+			<div name="divCopy" align="right">
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(examp1)">Copy All</a>
+			<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="demo(examp1)">&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;</a>
+			</div>
+		</div>
+		
+	
+	</div><!-- /content -->
+	
+<div data-role="popup" id="pop_obj" class="ui-content"><b>object</b></div>
+<div data-role="popup" id="pop_obj_lay" class="ui-content"><b>object</b> - DS layout</div>
+</div><!-- /page -->
+
+</body>
+</html>

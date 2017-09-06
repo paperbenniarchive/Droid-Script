@@ -1,5 +1,5 @@
 var sum = "";
-
+//soos test
 var col = "white";
 
 function OnStart()

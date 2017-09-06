@@ -1,0 +1,72 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>NXT</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<link rel="stylesheet" href="css/docs.css" />
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/example.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a" data-ajax="false">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>NXT</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p>The NXT object is used to manage the connection between your Android phone and the NXT brick.  Usually you create one these 
+		objects at the start of you program like this:</p>
+		
+		<div class="samp">&nbsp;nxt = app.CreateNxt();</div>
+		
+		<p>See the <a href="CreateNxt.htm">CreateNxt</a> function for more info.</p>
+		
+		<p>The following functions are provided by the NXT object:</p>
+		
+		<ul data-role="listview" data-inset="true" data-filter="false" >
+			
+			<li><a href="Beep.htm">Beep</a></li>
+			<li><a href="Brake.htm">Brake</a></li>
+			<li><a href="CheckConnection.htm">CheckConnection</a></li>
+			<li><a href="Disconnect.htm">Disconnect</a></li>
+			<li><a href="Drive.htm">Drive</a></li>
+			<li><a href="GetCurrentProgram.htm">GetCurrentProgram</a></li>
+			<li><a href="IsBluetoothEnabled.htm">IsBluetoothEnabled</a></li>
+			<li><a href="IsMotorIdle.htm">IsMotorIdle</a></li>
+			<li><a href="PlaySoundFile.htm">PlaySoundFile</a></li>
+			<li><a href="ReadColorSensor.htm">ReadColorSensor</a></li>
+			<li><a href="ReadDistanceSensor.htm">ReadDistanceSensor</a></li>
+			<li><a href="ReadMail.htm">ReadMail</a></li>
+			<li><a href="ReadLightSensor.htm">ReadLightSensor</a></li>
+			<li><a href="ReadTouchSensor.htm">ReadTouchSensor</a></li>
+			<li><a href="ReadSoundSensor.htm">ReadSoundSensor</a></li>
+			<li><a href="SendMail.htm">SendMail</a></li>
+			<li><a href="SetInvert.htm">SetInvert</a></li>
+			<li><a href="SetLampColor.htm">SetLampColor</a></li>
+			<li><a href="SetOnConnected.htm">SetOnConnected</a></li>
+			<li><a href="ShowDevices.htm">ShowDevices</a></li>
+			<li><a href="StartProgram.htm">StartProgram</a></li>
+			<li><a href="Stop.htm">Stop</a></li>
+			<li><a href="StopProgram.htm">StopProgram</a></li>
+			
+		</ul>
+				
+		
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>Brake</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet"  href="../css/themes/default/theme.min.css" />
+		<link rel="stylesheet"  href="../css/themes/default/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="../js/energize-min.js"></script>
+		<script src="../js/jquery-1.8.1.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/example.js"></script>
+		<link rel="stylesheet" href="../css/docs.css" />
+		<script src="../js/jquery.mobile-1.2.0.min.js"></script>
+</head> 
+
+<body> 
+
+<div data-role="page" data-theme="a">
+
+	<div data-role="header" data-position="fixed">
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' data-theme="c" onclick="history.back(); return false">Back</a> <h1>Brake</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+			
+		<p>The <b>Brake</b> function commands the NXT brick to Brake one or more of it's motors.</p>
+		
+		<p>The <b>motors</b> parameter can be a single motor, for example just <b>"A"</b> or a combination of motors such as <b>"ABC"</b>.</p>
+		
+		<p> Unlike the Stop function, this function actively brakes the motors using power from the battery.</p>
+		
+		<div class="samp">&nbsp;nxt.Brake( motors );</div><br>
+	
+		<div data-role="collapsible" data-collapsed="true"  data-mini="true" data-theme="a" data-content-theme="b">
+			<h3>Example - Brake motors B and C</h3>
+			<div id="examp1" style="font-size:70%">
+					<b id="snip1"  style="font-size:100%">
+					&nbsp;&nbsp;nxt.Brake( "BC" );<br>
+					</b>
+			</div>
+			<div name="divCopy" align="right">
+				<a href="#" data-role="button" data-mini="true" data-inline="true" onclick="copy(snip1)">&nbsp;&nbsp;Copy&nbsp;&nbsp;</a>
+			</div>
+		</div>
+	
+	</div><!-- /content -->
+	
+</div><!-- /page -->
+
+</body>
+</html>
